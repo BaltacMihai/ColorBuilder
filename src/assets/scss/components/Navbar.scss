@@ -1,0 +1,15 @@
+@use "./../base/variables.scss" as *;
+
+.navbar {
+  display: flex;
+  width: calc(100% - 2 * $pd-x);
+
+  background-color: $cl-primary;
+  padding: $pd-y $pd-x;
+
+  .logo {
+    width: $logo-size;
+    height: $logo-size;
+    margin-right: calc(50% - $pd-x - $logo-size);
+  }
+}
