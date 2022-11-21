@@ -32,7 +32,11 @@
       <h2 class="title">Result</h2>
 
       <div class="content">
-        <color-input labelName="Color" id="result"></color-input>
+        <response-input
+          labelName="Color"
+          id="finalColor"
+          :responseValue="response"
+        />
       </div>
     </section>
   </div>
@@ -41,10 +45,13 @@
 <script>
 import ColorInput from "./ColorInput.vue";
 import CustomInputRange from "./CustomInputRange.vue";
+import ResponseInput from "./ResponseInput.vue";
+
 export default {
   components: {
     ColorInput,
     CustomInputRange,
+    ResponseInput,
   },
   data() {
     return {
@@ -52,6 +59,11 @@ export default {
       secondaryColor: "#cccccc",
       proportion: "50",
     };
+  },
+  computed: {
+    response() {
+      return "#cccccc";
+    },
   },
   methods: {
     primaryColorChanged(newValue) {
