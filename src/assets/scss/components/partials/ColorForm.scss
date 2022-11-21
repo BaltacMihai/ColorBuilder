@@ -1,0 +1,18 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 2rem * 2); //the height of navbar * 2
+  background-color: #f4f7ff;
+  width: 20%;
+
+  section {
+    flex: 1 0;
+
+    h2 {
+      width: calc(100% - 2rem);
+      background: #5d60ef;
+      padding: 1rem;
+      color: white;
+    }
+  }
+}

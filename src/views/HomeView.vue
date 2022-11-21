@@ -1,9 +1,11 @@
-<script setup>
-import TheWelcome from '../components/TheWelcome.vue'
-</script>
-
 <template>
   <main>
-    <TheWelcome />
+    <RouterLink to="/adding">
+      <p>Adding 2 colors</p>
+    </RouterLink>
   </main>
 </template>
+
+<script>
+import { RouterLink } from "vue-router";
+</script>

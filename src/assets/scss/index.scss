@@ -1,2 +1,4 @@
-@use "./base//global.scss";
+@use "./base/global.scss";
+
 @use "./components/Navbar.scss";
+@use "./components/partials/ColorForm.scss";
