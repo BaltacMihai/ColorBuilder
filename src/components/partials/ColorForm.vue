@@ -20,11 +20,13 @@
     <section>
       <h2 class="title">Settings</h2>
       <div class="content">
-        <div class="inputGroup">
-          <label for="proportions"> Proportions Color</label>
-          <input type="range" />
-        </div>
+        <custom-input-range
+          labelName="Proportions Color"
+          id="proportions"
+          @change="proportionChanged"
+        />
       </div>
+      {{ proportion }}
     </section>
     <section>
       <h2 class="title">Result</h2>
@@ -38,14 +40,17 @@
 
 <script>
 import ColorInput from "./ColorInput.vue";
+import CustomInputRange from "./CustomInputRange.vue";
 export default {
   components: {
     ColorInput,
+    CustomInputRange,
   },
   data() {
     return {
       primaryColor: "#cccccc",
       secondaryColor: "#cccccc",
+      proportion: "50",
     };
   },
   methods: {
@@ -54,6 +59,10 @@ export default {
     },
     secondaryColorChanged(newValue) {
       if (typeof newValue == "string") this.secondaryColor = newValue;
+    },
+    proportionChanged(newValue) {
+      if (typeof newValue == "string" || typeof newValue == "number")
+        this.proportion = newValue;
     },
   },
 };
@@ -67,6 +76,8 @@ section {
 
   .content {
     margin-top: 1rem;
+    width: 100%;
+    margin-left: 2rem;
     & > * {
       margin-top: 1rem;
     }

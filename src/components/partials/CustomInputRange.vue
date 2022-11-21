@@ -2,19 +2,8 @@
   <div class="inputGroup">
     <label :for="labelId">{{ labelName }}</label>
     <div class="inputs">
-      <input type="text" v-model="color" />
-      <input
-        type="color"
-        class="invisible"
-        :id="inputColorId"
-        v-model="color"
-      />
-      <img
-        src="./../../assets/imgaes/icons/colorInput.svg"
-        alt="Color Input Icon"
-        class="colorPicker"
-        @click="clickColorPicker()"
-      />
+      <input type="range" v-model="value" min="0" max="100" />
+      <input type="text" v-model="computedValue" @input="calculateValue" />
     </div>
   </div>
 </template>
@@ -29,21 +18,27 @@ export default {
     return {
       labelId: "label-" + this.id,
       inputColorId: "inputColorId-" + this.id,
-      color: "#cccccc",
+      value: 50,
     };
   },
-  methods: {
-    clickColorPicker() {
-      console.log(this.inputColorId);
-
-      let inputColor = document.getElementById(this.inputColorId);
-      console.log(inputColor);
-      inputColor.click();
+  computed: {
+    computedValue() {
+      return this.value / 10;
     },
   },
+
   watch: {
-    color(newValue, oldValue) {
+    value(newValue, oldValue) {
       this.$emit("change", newValue);
+    },
+  },
+  methods: {
+    calculateValue(event) {
+      if (event.target.value < 0 || event.target.value > 10) return 0;
+      else {
+        this.value = event.target.value * 10;
+        this.$emit("change", event.target.value * 10);
+      }
     },
   },
 };
@@ -65,7 +60,11 @@ export default {
       padding: 0.25rem;
       font-size: 16px;
       border-radius: 5px;
-      margin-right: 1rem;
+      margin-left: 1rem;
+      width: 2.25rem;
+    }
+
+    input[type="range"] {
       width: 75%;
       margin-top: 0.25rem;
     }
