@@ -8,13 +8,11 @@
           id="primary"
           @change="primaryColorChanged"
         ></color-input>
-        {{ primaryColor }}
         <color-input
           labelName="Secondary"
           id="secondary"
           @change="secondaryColorChanged"
         ></color-input>
-        {{ secondaryColor }}
       </div>
     </section>
     <section>
@@ -26,7 +24,6 @@
           @change="proportionChanged"
         />
       </div>
-      {{ proportion }}
     </section>
     <section>
       <h2 class="title">Result</h2>
@@ -35,7 +32,7 @@
         <response-input
           labelName="Color"
           id="finalColor"
-          :responseValue="response"
+          :responseValue="responseColor"
         />
       </div>
     </section>
@@ -46,6 +43,8 @@
 import ColorInput from "./ColorInput.vue";
 import CustomInputRange from "./CustomInputRange.vue";
 import ResponseInput from "./ResponseInput.vue";
+
+import Color from "./../../classes/Color";
 
 export default {
   components: {
@@ -58,11 +57,32 @@ export default {
       primaryColor: "#cccccc",
       secondaryColor: "#cccccc",
       proportion: "50",
+      responseColor: "#cccccc",
+      computeResponse: () => {
+        let primaryColorObject = new Color();
+
+        let secondaryColorObject = new Color();
+
+        primaryColorObject.value(this.primaryColor);
+        secondaryColorObject.value(this.secondaryColor);
+
+        this.responseColor = primaryColorObject.addColors(
+          secondaryColorObject,
+          this.proportion / 10
+        );
+      },
     };
   },
-  computed: {
-    response() {
-      return "#cccccc";
+
+  watch: {
+    primaryColor() {
+      this.computeResponse();
+    },
+    secondaryColor() {
+      this.computeResponse();
+    },
+    proportion() {
+      this.computeResponse();
     },
   },
   methods: {

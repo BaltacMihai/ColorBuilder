@@ -2,7 +2,7 @@
   <div class="inputGroup">
     <label :for="labelId">{{ labelName }}</label>
     <div class="inputs">
-      <input type="text" v-model="response" readonly />
+      <input type="text" :value="responseValue" readonly />
       <img
         src="./../../assets/imgaes/icons/clipboard-text.svg"
         alt="Color Input Icon"

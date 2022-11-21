@@ -53,7 +53,7 @@ export default {
 .inputGroup {
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
+  margin: 0.75rem auto;
 
   label {
     font-size: 18px;
